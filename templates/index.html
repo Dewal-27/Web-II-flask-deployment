@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Flask Application</title>
+   
+    <link href="{{url_for('static',filename='./templates/css/style.css')}}" rel="stylesheet">
+</head>
+<body>
+    <h1>Welcome {{name}}to the Demo Flask Application</h1>
+    <p>This is a simple Flask application
+        {% if isValid %}
+            <b>the request is valid</b>
+        {% else %}
+            <b>the request is not valid</b>
+        {% endif %}
+    </p>
+</body>
+</html>

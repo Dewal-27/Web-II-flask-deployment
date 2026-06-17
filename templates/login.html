@@ -1,0 +1,20 @@
+<div class="container">
+    <h2>login </h2>
+    {% with message=get_flashed_messages() %}
+        {% if message %}
+            {% for msg in message %}
+                <p>{{msg}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form method="post" action="/login">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" id="username" name="username" >
+            
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" >
+
+        </div>
+        <button type="submit" class="btn btn-ptimary">login</button>
+    </form>
