@@ -8,6 +8,40 @@
     <link href="{{url_for('static',filename='./templates/css/style.css')}}" rel="stylesheet">
 </head>
 <body>
+    <div class="container">
+        <div class="user-data">
+            <form></form>
+            <table class="table table-responsive">
+                <tr>
+                    <th>SN</th>
+                    <th>Username</th>
+                    <th>password</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                {%for user in users %}
+                    <tr>
+                        <td>{{user.id}}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.password}}</td>
+                        
+                        <td>
+                            {% if user.status==1 %}
+                            <span>Active</span>
+                            {% else %}
+                            <span style="color:red;">Inactive</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a class="btnedit" href="/updateuser/{{user.id}}">Edit</a>
+                            <a class="btndel" href="#">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    '''
     <h1>Welcome {{name}}to the Demo Flask Application</h1>
     <p>This is a simple Flask application
         {% if isValid %}
@@ -16,5 +50,6 @@
             <b>the request is not valid</b>
         {% endif %}
     </p>
+    '''
 </body>
 </html>

@@ -1,0 +1,19 @@
+{% block title %} Add user {% endblock %}
+{% block content %}
+<h1>Add User</h1>
+<form action="/adduser" method="POST">
+    <div class="form-group">
+        <label for="username">Username:</label> 
+        <input type="text" name="username" name="password" placeholder="username" required><br><br>
+
+        <label for="password">Password:</label> 
+        <input type="text" name="password" name="password" placeholder="password" required><br><br>
+        <label for="ststus"></label>
+        <input type="number" name="status" name="status" placeholder="status" required><br><br>
+        <button type="submit" name="submit">Add User</button> 
+        <a href="/" class="cancel-link">Cancel</a>
+    </div>
+           
+    
+</form>
+{% endblock %}

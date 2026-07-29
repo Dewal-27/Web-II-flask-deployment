@@ -1,8 +1,9 @@
 {% block content %}
     <div class="container">
         <h2>Sign Up</h2>
-            <form method="post" action="/signup">
+            <form method="post" action="/signup" enctype="multipart/form-data">
                 <div class="form-group">
+                    
                     <label for="username">Username:</label>
                     <input type="text" class="form-control" id="username" name="username" >
                     
@@ -11,6 +12,9 @@
 
                     <label for="password">Password:</label>
                     <input type="password" class="form-control" id="password" name="password" >
+
+                    <label for="image">Profile Picture:</label>
+                    <input type="file" class="form-control" id="image" name="image" >
 
                 </div>
                 <button type="submit" class="btn btn-ptimary">Sign Up</button>

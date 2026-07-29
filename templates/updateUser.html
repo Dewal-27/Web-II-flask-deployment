@@ -1,0 +1,11 @@
+{% block title %} Update user {% endblock %}
+{% block content %}
+<h1>Update User</h1>
+<form method="post">
+    
+    <input type="text" name="username" value="{{user.username}}" placeholder="username" ><br><br>
+    <input type="text" name="password" value="{{user.password}}" placeholder="password" ><br><br>
+    <button type="submit" name="submit">Update User</button>        
+    
+</form>
+{% endblock %}

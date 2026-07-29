@@ -1,9 +1,10 @@
-from flask import Flask,render_template,request,redirect,url_for,flash,session
+from flask import Flask,render_template,request,redirect,url_for,flash,session,make_response
 
-
+import os
 app = Flask(__name__)
 app.secret_key="mykey1234567"
-
+UPLOAD_DIR='uploads'
+app.config['UPLOADS_FOLDER']=UPLOAD_DIR#upload_ directory
 
 @app.route('/')
 def home():
@@ -53,6 +54,7 @@ def signup():
 
         password=request.form['password'].strip()
         email=request.form['email'].strip()
+        image=request.file['image']
         if not username:
             errors.append("Username is required.")
         if not password:
@@ -64,6 +66,8 @@ def signup():
         elif "@" not in email:
             errors.append("Input valid email.")
         if not errors:
+            if image.filename:
+                image.save(os.path.join(app.config['UPLOAD_FOLDER'],image.filename))
             flash("LOgin Sucessfully")
             #return f" Username: {username} Password: {password} Email: {email}"    
             return redirect(url_for('login'))
@@ -74,6 +78,35 @@ def logout():
     session.clear()
     return redirect('/login')
 
+'''
+cookie
+set cookie('cookie_name','value'
+    'max age',
+    httpOnly.
+    secure.
+    domain,
+    path='/'
+)
+'''
+@app.route('/setcookie')
+def setcookie():
+    resp=make_response("Cookie is set")
+    resp.set_cookie('user',"Dewal")
+    return resp
+
+@app.route('/getcookie')
+def getcookie():
+    user=request.cookies.get('user')
+    if user:
+        return f"Welcome {user}"
+    else:
+        return "You are new here."
+    
+@app.route('/deletecookie')
+def deletecookie():
+    resp=make_response('cookie deleted')
+    resp.delete_cookie('user')
+    return resp
 
 if __name__=="__main__":
     app.run(debug=True)
